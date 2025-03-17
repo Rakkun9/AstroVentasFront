@@ -1,20 +1,38 @@
 ---
 import BaseLayout from "../layouts/Layout.astro";
-// import ProductCard from "../components/ProductCart.astro";
 import Filters from "../components/Filters.tsx";
 import type { Product } from "../producs"; // Importa el tipo
+import AdminView from "../components/AdminView.tsx";
 
 // Hacer una solicitud al backend para obtener los productos
-const response = await fetch("http://localhost:3001/api/products");
+const response = await fetch("http://localhost:3301/app/products");
 const products = (await response.json()) as Product[]; // Define el tipo de `products`
 ---
 
 <BaseLayout>
-  <h1 class="text-4xl font-bold text-center my-8 text-gray-800">
-    Productos Destacados
-  </h1>
+  <!-- Header -->
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-800">AstroVentas</h1>
+      <div class="flex items-center space-x-4">
+        <AdminView client:load />
+        <a
+          href="/login"
+          class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300"
+        >
+          Login
+        </a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Componente de filtros en React -->
-  <Filters client:load products={products} />
+  <!-- Contenido Principal -->
+  <main class="container mx-auto px-4 py-8">
+    <h2 class="text-4xl font-bold text-center my-8 text-gray-800">
+      Productos Destacados
+    </h2>
 
+    <!-- Componente de filtros en React -->
+    <Filters client:load products={products} />
+  </main>
 </BaseLayout>
