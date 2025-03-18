@@ -278,7 +278,7 @@ export default function ProductList() {
               />
             </label>
             <label className="block mb-2">
-              Imagen:
+              Imagen URL:
               <input
                 type="text"
                 value={newProduct.image}
