@@ -12,6 +12,7 @@ interface Product {
   brand_id: number;
 }
 
+// Definir la interfaz para las categorías
 export default function ProductList() {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
